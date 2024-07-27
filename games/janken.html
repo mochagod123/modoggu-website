@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <title>School Tools</title>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+        <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+        <link rel="shortcut icon" href="../favicon.png">
+    </head>
+    <body>
+        <p>
+            <big>じゃんけん</big><br>
+            下にログが表示されます。
+            <hr>
+            <button py-click="janken()">じゃんけんをする</button>
+            <py-script>
+                import random
+
+                def janken():
+                    #リストにじゃんけんの手を格納
+                    list=["グー","チョキ","パー"]
+                    
+                    #プレイヤーの手をインプット
+                    player = input("")
+                    
+                    #リストから手を出す
+                    com = random.choice(list)
+
+                    print("結果は。。?")
+
+                    #プレイヤーと相手の手で勝敗を決める
+                    #勝敗もプリント
+                    if player == com:
+                        print("あいこです。")
+                    elif player == "グー":
+                        if com == "チョキ":
+                            print("あなたの勝ち")
+                        elif com == "パー":
+                            print("あなたの負け")
+                    elif player == "チョキ":
+                        if com == "グー":
+                            print("あなたの負け")
+                        elif com == "パー":
+                            print("あなたの勝ち")
+                    elif player == "パー":
+                        if com == "グー":
+                            print("あなたの勝ち")
+                        elif com== "チョキ":
+                            print("あなたの負け")
+                    else:
+                        print("エラー!\nグーか、チョキか、パーをだしてください。")
+            </py-script>
+        </p>
+    </body>
+</html>
