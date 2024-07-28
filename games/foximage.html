@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <title>School Tools</title>
+        <meta charset="utf-8"/>
+        <link rel="shortcut icon" href="../favicon.png">
+    </head>
+    <body>
+        <p>
+            <big>狐の画像取得</big>
+            <hr>
+            <button onclick='clickd()'>取得</button><br><br>
+            <img src="" id="images"><br>
+        </p>
+        <script>
+            function clickd() {
+                const xhr = new XMLHttpRequest();
+                xhr.open("GET", `https://randomfox.ca/floof/`);
+                xhr.send();
+                xhr.responseType = "json";
+                xhr.onload = () => {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        const data = xhr.response;
+                        document.getElementById('images').src = data.image;
+                    } else {
+                        console.log(`Error: ${xhr.status}`);
+                    }
+                };
+            }
+        </script>
+    </body>
+</html>
