@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <title>新・ネットレの学習教室【無料】</title>
+        <meta charset="utf-8"/>
+    </head>
+    <body>
+        <p>
+            <big>数学学習</big>
+            <hr>
+            <big>1+2<br>2+8+2<br>9+1+7+5</big>
+        </p>
+        <script>
+            function generateRandomString(length) {
+                var characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+                var randomString = '';
+                for (var i = 0; i < length; i++) {
+                    var randomIndex = Math.floor(Math.random() * characters.length);
+                    randomString += characters.charAt(randomIndex);
+                }
+                return randomString;
+            }
+
+            document.addEventListener('keydown', function(event) {
+                if (event.keyCode === 39) { 
+                    const randomString1 = generateRandomString(12); 
+                    let url = 'https://mochagod123.github.io/modoggu-website/tools/math.html#' + randomString1;
+                    window.location.href = url;
+                }
+            });
+        </script>
+    </body>
+</html>
