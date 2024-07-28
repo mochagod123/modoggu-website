@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <title>School Tools</title>
+        <meta charset="utf-8"/>
+        <link rel="shortcut icon" href="../favicon.png">
+    </head>
+    <body>
+        <p>
+            <big>モンハンWorldの武器検索</big>
+            <hr>
+            <input type="text" id="bukid">
+            <button onclick='clickd()'>検索</button><br>
+            <p id="bukiname">武器の名前: ???</p><br>
+            <img src="" id="icon"><br>
+            <img src="" id="images"><br>
+        </p>
+        <script>
+            function clickd() {
+                const getid = document.getElementById("bukid").value;
+                const xhr = new XMLHttpRequest();
+                xhr.open("GET", `https://mhw-db.com/weapons/${getid}`);
+                xhr.send();
+                xhr.responseType = "json";
+                xhr.onload = () => {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        const data = xhr.response;
+                        var text = document.getElementById('bukiname').innerText;
+                        document.getElementById('bukiname').innerText = `武器の名前: ${data.name}`;
+                        document.getElementById('icon').src =  data.assets.icon;
+                        document.getElementById('images').src = data.assets.image;
+                    } else {
+                        console.log(`Error: ${xhr.status}`);
+                    }
+                };
+            }
+        </script>
+    </body>
+</html>
