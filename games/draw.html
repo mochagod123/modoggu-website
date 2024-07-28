@@ -1,0 +1,70 @@
+<html>
+    <head>
+        <title>もどっぐのサイト</title>
+        <meta charset="utf-8"/>
+        <link rel="shortcut icon" href="../favicon.png">
+        <style>
+            canvas {
+              border: solid 1px #333;
+            }
+        </style>
+    </head>
+    <body bgcolor="gray">
+        <p>
+            <big>お絵描き</big>
+            <hr>
+            <canvas id="draw-area" width="400" height="400">
+            </canvas>
+            <div>
+              <button id="clearBtn">消す</button>
+              <button id="download">ダウンロード</button>
+            </div>
+        </p>
+        <script>
+            const canvas = document.getElementById('draw-area');
+            const ctx = canvas.getContext('2d');
+            const clearBtn = document.getElementById('clearBtn');
+            const mouse = { x: null, y: null };
+        
+            function clear() {
+              ctx.clearRect(0, 0, canvas.width, canvas.height);
+            }
+        
+            function onPaint() {
+              ctx.lineTo(mouse.x, mouse.y);
+              ctx.stroke();
+            }
+
+            document.getElementById("download").onclick = (event) => {
+                let canvas = document.getElementById("draw-area");
+
+                let link = document.createElement("a");
+                link.href = canvas.toDataURL("image/png");
+                link.download = "draw.png";
+                link.click();
+            }
+
+            canvas.addEventListener('mousemove', function (e) {
+              mouse.x = e.pageX - this.offsetLeft;
+              mouse.y = e.pageY - this.offsetTop;
+              console.log(mouse)
+            });
+        
+            canvas.addEventListener('mousedown', function (e) {
+              console.log('mousedown')
+              ctx.beginPath();
+              ctx.moveTo(mouse.x, mouse.y);
+              ctx.lineWidth = 5;
+              ctx.strokeStyle = '#333';
+        
+              canvas.addEventListener('mousemove', onPaint)
+            });
+        
+            canvas.addEventListener('mouseup', function () {
+              canvas.removeEventListener('mousemove', onPaint)
+            });
+        
+            clearBtn.addEventListener('click', clear);
+        </script>
+    </body>
+</html>
