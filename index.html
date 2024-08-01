@@ -5,25 +5,27 @@
         <link rel="shortcut icon" href="favicon.png">
         <style>
         div#content {
-            width: 1303px;
+            width: 1300px;
             overflow: hidden;
         }
 
         div#main {
-            width: 700px;
+            width: 1000px;
             float: right;
+            background-color: mediumseagreen;
         }
 
         nav {
             width: 300px;
             float: left;
+            background-color: mistyrose;
         }
         </style>
     </head>
     <body bgcolor="gray">
         <div id="content">
             <nav>
-                <big><marquee>もどっぐのサイトへようこそ！<br>ゆっくりしていってね！</marquee></big><br>
+                <big>案内板</big><br>
                 <li><a href="links/index.html">URLリスト</a><br></li>
                 <li><a href="games/index.html">ゲームたち</a><br></li>
                 <li><a href="games/foximage.html">狐の画像を取得</a><br></li>
@@ -31,14 +33,34 @@
                 <li><a href="tools/index.html">自作ツールたち</a><br></li>
                 <li><a href="tools/mhwsearch.html">モンハンの武器検索</a><br></li>
                 <li><a href="downloads/index.html">すべてのダウンロードリスト</a><br></li>
-                <li><a href="board/index.html">メイン掲示板</a><br></li>
+                <li><a href="board/index.html">メイン掲示板</a><br></li><br>
+                <button onclick='viewimage()'>クリック？</button><br>
+                <img src="" id="imageview">
+                <p id="textview"></p>
             </nav>
             <div id="main">
-                <p>
-                    <iframe src="news.html" height="300", width="350"></iframe>
-                    <iframe src="panel.html" height="300", width="330"></iframe>
-                </p>
+                <marquee>ようこそ！もどっぐのサイトへ！<br>お知らせとかはないです。</marquee><hr>
+                <p id="tabun">多分書く日記。</p><br>
+                <p>もう夏休みだね。むっちゃ早いなぁ</p>
             </div>
         </div>
+        <script>
+            count = 0
+            const countUp = () => {
+                if (count == 0) {
+                    document.getElementById('tabun').innerText = `多分書く日記。   多分だよ。。`;
+                    count = 1
+                } else if (count == 1) {
+                    document.getElementById('tabun').innerText = `多分書く日記。`;
+                    count = 0
+                }
+            }
+            setInterval(countUp, 3000);
+
+            function viewimage() {
+                document.getElementById('imageview').src =  "favicon.png";
+                document.getElementById('textview').innerText = `ばぁw`;
+            }
+        </script>
     </body>
 </html>
